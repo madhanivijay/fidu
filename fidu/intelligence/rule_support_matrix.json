@@ -1,0 +1,72 @@
+{
+  "not_null": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "accepted_values": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "min_value": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "max_value": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "between": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "unique": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "duplicate_check": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "regex_match": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "planned"
+  },
+  "freshness": {
+    "pandas": "supported",
+    "spark": "planned",
+    "sql": "planned"
+  },
+  "row_count_min": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "row_count_max": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "supported"
+  },
+  "required_columns": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "planned"
+  },
+  "column_type_check": {
+    "pandas": "supported",
+    "spark": "planned",
+    "sql": "planned"
+  },
+  "schema_drift_check": {
+    "pandas": "supported",
+    "spark": "supported",
+    "sql": "planned"
+  }
+}

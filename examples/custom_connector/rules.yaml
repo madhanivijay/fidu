@@ -1,0 +1,41 @@
+schema_version: 1
+
+dataset: example_orders
+
+source:
+  type: jsonl
+  path: examples/custom_connector/orders.jsonl
+
+rules:
+  - name: order_id_not_null
+    type: not_null
+    column: order_id
+    dimension: completeness
+    severity: critical
+
+  - name: order_id_unique
+    type: unique
+    column: order_id
+    dimension: uniqueness
+    severity: critical
+
+  - name: customer_id_not_null
+    type: not_null
+    column: customer_id
+    dimension: completeness
+    severity: warning
+
+  - name: amount_in_range
+    type: between
+    column: amount
+    min_value: 0
+    max_value: 1000
+    dimension: validity
+    severity: warning
+
+  - name: valid_status
+    type: accepted_values
+    column: status
+    values: [PLACED, SHIPPED, DELIVERED, CANCELED]
+    dimension: validity
+    severity: warning

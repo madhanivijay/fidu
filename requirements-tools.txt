@@ -1,0 +1,11 @@
+# Optional dependencies for external DQ tool execution.
+# Install only what your repo actually uses.
+
+# Soda CLI / Soda Core
+soda-core>=3.0.0
+
+# Great Expectations
+great_expectations>=0.18.0
+
+# Deequ/PyDeequ. Requires Spark/JVM runtime setup.
+pydeequ>=1.2.0

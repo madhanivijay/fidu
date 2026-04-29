@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+*.egg
+*.so
+
+# Build / dist artifacts
+build/
+dist/
+.eggs/
+wheels/
+*.whl
+*.tar.gz
+
+# Virtualenvs
+.venv/
+venv/
+env/
+ENV/
+
+# Tool caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# IDEs / editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# macOS / OS noise
+.DS_Store
+Thumbs.db
+
+# Claude Code per-user settings (do not commit personal session config)
+.claude/settings.local.json
+
+# Runtime DQ outputs (regenerated on every run; never commit)
+outputs/
+
+# Local secrets (just in case)
+.env
+.env.local
+*.pem
+*.key

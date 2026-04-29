@@ -1,0 +1,5 @@
+{"order_id": 1, "customer_id": "C001", "amount": 50.0, "status": "PLACED", "email": "alice@example.com"}
+{"order_id": 2, "customer_id": "C002", "amount": 99.5, "status": "DELIVERED", "email": "bob@example.com"}
+{"order_id": 3, "customer_id": null, "amount": 300, "status": "DELIVERED", "email": "bad-email"}
+{"order_id": 4, "customer_id": "C004", "amount": -50, "status": "PLACED", "email": "dave@example.com"}
+{"order_id": 5, "customer_id": "C005", "amount": 120, "status": "INVALID_STATUS", "email": "eve@example.com"}

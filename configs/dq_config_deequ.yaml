@@ -1,0 +1,32 @@
+schema_version: 1
+
+project:
+  name: enterprise_dq_deequ_demo
+
+execution:
+  mode: tool
+  tool: deequ
+  fail_on_critical: false
+  fail_on_critical_drift: false
+
+tool_config:
+  deequ:
+    execution_mode: translate_only
+    artifact_dir: ../outputs/tool_artifacts/deequ
+    # execute_spark is an extension point because PyDeequ normally runs inside
+    # a Spark/EMR/Databricks runtime with JVM package setup.
+
+outputs:
+  json_path: ../outputs/deequ/dq_results.json
+  rule_results_csv: ../outputs/deequ/dq_rule_results.csv
+  scorecard_csv: ../outputs/deequ/dq_scorecard.csv
+  failed_rows_dir: ../outputs/deequ/failed_rows
+
+drift:
+  enabled: true
+  history_path: ../outputs/deequ/history/dq_run_history.json
+  drift_output_path: ../outputs/deequ/drift/drift_report.json
+
+datasets:
+  - name: orders
+    rules_file: ../rules/orders_rules.yaml

@@ -1,0 +1,77 @@
+{
+  "csv_local": {
+    "engine": "pandas",
+    "source": {
+      "type": "local_file",
+      "format": "csv",
+      "path": "data/orders.csv"
+    }
+  },
+  "parquet_local": {
+    "engine": "pandas",
+    "source": {
+      "type": "local_file",
+      "format": "parquet",
+      "path": "data/orders.parquet"
+    }
+  },
+  "s3_parquet_pandas": {
+    "engine": "pandas",
+    "source": {
+      "type": "s3_file",
+      "format": "parquet",
+      "path": "s3://bucket/path/"
+    }
+  },
+  "s3_parquet_spark": {
+    "engine": "spark",
+    "source": {
+      "type": "spark_file",
+      "format": "parquet",
+      "path": "s3://bucket/path/"
+    }
+  },
+  "adls_parquet_spark": {
+    "engine": "spark",
+    "source": {
+      "type": "spark_file",
+      "format": "parquet",
+      "path": "abfs://container@account.dfs.core.windows.net/path/"
+    }
+  },
+  "delta_databricks": {
+    "engine": "sql",
+    "source": {
+      "type": "databricks_sql",
+      "catalog": "main",
+      "schema": "stage",
+      "table": "orders"
+    }
+  },
+  "iceberg_trino": {
+    "engine": "sql",
+    "source": {
+      "type": "trino",
+      "catalog": "iceberg",
+      "schema": "stage",
+      "table": "orders"
+    }
+  },
+  "snowflake_table": {
+    "engine": "sql",
+    "source": {
+      "type": "snowflake",
+      "database": "ANALYTICS",
+      "schema": "STAGE",
+      "table": "ORDERS"
+    }
+  },
+  "clickhouse_table": {
+    "engine": "sql",
+    "source": {
+      "type": "clickhouse",
+      "database": "analytics",
+      "table": "orders"
+    }
+  }
+}

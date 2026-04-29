@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fidu"
+version = "0.1.0"
+description = "Tool-agnostic data quality runner with native engines, Soda/GX/Deequ adapters, trust scores, and drift detection."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+authors = [{name = "Enterprise DQ Kit Maintainers"}]
+keywords = ["data-quality", "soda", "great-expectations", "deequ", "airflow"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Quality Assurance",
+]
+dependencies = [
+    "pandas>=2.0.0",
+    "pyyaml>=6.0.0",
+    "duckdb>=0.10.0",
+    "pyarrow>=14.0.0",
+]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.32.0", "plotly>=5.20.0"]
+spark = ["pyspark>=3.5.0"]
+cloud = ["s3fs>=2024.3.0", "adlfs>=2024.2.0"]
+warehouses = [
+    "snowflake-connector-python>=3.7.0",
+    "trino>=0.328.0",
+    "clickhouse-connect>=0.7.0",
+    "databricks-sql-connector>=3.0.0",
+]
+tools = ["soda-core>=3.3.0", "great-expectations>=0.18.0"]
+schema = ["pydantic>=2.6.0"]
+test = ["pytest>=8.0.0", "pytest-cov>=5.0.0", "pydantic>=2.6.0", "jsonschema>=4.20.0"]
+dev = ["pytest>=8.0.0", "pytest-cov>=5.0.0", "ruff>=0.5.0", "pydantic>=2.6.0", "jsonschema>=4.20.0"]
+
+[project.scripts]
+fidu = "fidu.main:main"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["fidu*"]
+
+[tool.setuptools.package-data]
+"fidu.intelligence" = ["*.json"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [".venv", "outputs", "data"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = [
+    "E501",  # line length is enforced softly
+    "B008",  # function call in default argument (used intentionally for tz=timezone.utc)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["B011"]
+"__init__.py" = ["F401"]

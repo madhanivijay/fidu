@@ -1,0 +1,25 @@
+schema_version: 1
+
+project:
+  name: enterprise_dq_starter_kit
+
+execution:
+  mode: native
+  engine: pandas
+  fail_on_critical: false
+  fail_on_critical_drift: false
+
+outputs:
+  json_path: ../outputs/dq_results.json
+  rule_results_csv: ../outputs/dq_rule_results.csv
+  scorecard_csv: ../outputs/dq_scorecard.csv
+  failed_rows_dir: ../outputs/failed_rows
+
+drift:
+  enabled: true
+  history_path: ../outputs/history/dq_run_history.json
+  drift_output_path: ../outputs/drift/drift_report.json
+
+datasets:
+  - name: orders
+    rules_file: ../rules/orders_rules.yaml

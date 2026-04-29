@@ -1,0 +1,99 @@
+{
+  "by_column_name": {
+    "id": [
+      "not_null",
+      "unique"
+    ],
+    "order_id": [
+      "not_null",
+      "unique"
+    ],
+    "customer_id": [
+      "not_null"
+    ],
+    "email": [
+      "regex_match",
+      "not_null"
+    ],
+    "phone": [
+      "regex_match"
+    ],
+    "status": [
+      "accepted_values",
+      "not_null"
+    ],
+    "created_at": [
+      "freshness",
+      "not_null"
+    ],
+    "updated_at": [
+      "freshness"
+    ],
+    "amount": [
+      "not_null",
+      "between",
+      "min_value"
+    ],
+    "price": [
+      "not_null",
+      "min_value"
+    ],
+    "quantity": [
+      "not_null",
+      "min_value"
+    ]
+  },
+  "by_data_type": {
+    "string": [
+      "not_null",
+      "accepted_values",
+      "regex_match"
+    ],
+    "numeric": [
+      "not_null",
+      "min_value",
+      "max_value",
+      "between"
+    ],
+    "date": [
+      "not_null",
+      "freshness"
+    ],
+    "timestamp": [
+      "not_null",
+      "freshness"
+    ],
+    "boolean": [
+      "not_null",
+      "accepted_values"
+    ]
+  },
+  "by_dimension": {
+    "completeness": [
+      "not_null",
+      "required_columns"
+    ],
+    "validity": [
+      "accepted_values",
+      "regex_match",
+      "between",
+      "min_value",
+      "max_value"
+    ],
+    "uniqueness": [
+      "unique",
+      "duplicate_check"
+    ],
+    "freshness": [
+      "freshness"
+    ],
+    "consistency": [
+      "schema_drift_check",
+      "column_type_check"
+    ],
+    "volume": [
+      "row_count_min",
+      "row_count_max"
+    ]
+  }
+}

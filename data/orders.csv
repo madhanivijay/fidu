@@ -1,0 +1,7 @@
+order_id,customer_id,amount,status,order_date,email
+1,C001,100,PLACED,2026-04-25,test1@example.com
+2,C002,250,SHIPPED,2026-04-25,test2@example.com
+3,,300,DELIVERED,2026-04-24,bad-email
+4,C004,-50,PLACED,2026-04-23,test4@example.com
+5,C005,120,INVALID_STATUS,2026-04-20,test5@example.com
+5,C006,130,PLACED,2026-04-20,test6@example.com

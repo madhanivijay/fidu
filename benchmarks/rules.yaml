@@ -1,0 +1,61 @@
+schema_version: 1
+
+dataset: bench_orders
+
+source:
+  type: parquet
+  format: parquet
+  path: PLACEHOLDER  # rewritten by benchmarks/run.py at runtime
+
+rules:
+  - name: order_id_not_null
+    type: not_null
+    column: order_id
+    dimension: completeness
+    severity: critical
+
+  - name: order_id_unique
+    type: unique
+    column: order_id
+    dimension: uniqueness
+    severity: critical
+
+  - name: customer_id_not_null
+    type: not_null
+    column: customer_id
+    dimension: completeness
+    severity: warning
+
+  - name: amount_in_range
+    type: between
+    column: amount
+    min_value: 0
+    max_value: 1000
+    dimension: validity
+    severity: warning
+
+  - name: valid_status
+    type: accepted_values
+    column: status
+    values: [new, shipped, delivered, canceled]
+    dimension: validity
+    severity: warning
+
+  - name: email_regex
+    type: regex_match
+    column: email
+    pattern: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+    dimension: validity
+    severity: info
+
+  - name: minimum_row_count
+    type: row_count_min
+    value: 1
+    dimension: volume
+    severity: critical
+
+  - name: required_columns_present
+    type: required_columns
+    columns: [order_id, customer_id, amount, status, email, created_at]
+    dimension: consistency
+    severity: critical

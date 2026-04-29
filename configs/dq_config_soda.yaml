@@ -1,0 +1,36 @@
+schema_version: 1
+
+project:
+  name: enterprise_dq_soda_demo
+
+execution:
+  mode: tool
+  tool: soda
+  fail_on_critical: false
+  fail_on_critical_drift: false
+
+tool_config:
+  soda:
+    execution_mode: translate_only
+    artifact_dir: ../outputs/tool_artifacts/soda
+    # To actually run Soda CLI, change to execute_cli and configure these:
+    # execution_mode: execute_cli
+    # soda_binary: soda
+    # data_source: trino
+    # configuration_file: path/to/soda/configuration.yml
+
+outputs:
+  json_path: ../outputs/soda/dq_results.json
+  rule_results_csv: ../outputs/soda/dq_rule_results.csv
+  scorecard_csv: ../outputs/soda/dq_scorecard.csv
+  failed_rows_dir: ../outputs/soda/failed_rows
+
+drift:
+  # Tool mode now produces per-rule results, so drift can run safely.
+  enabled: true
+  history_path: ../outputs/soda/history/dq_run_history.json
+  drift_output_path: ../outputs/soda/drift/drift_report.json
+
+datasets:
+  - name: orders
+    rules_file: ../rules/orders_rules.yaml

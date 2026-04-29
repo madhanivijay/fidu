@@ -1,0 +1,52 @@
+{
+  "pandas": {
+    "supported_sources": [
+      "csv",
+      "parquet",
+      "local_file",
+      "s3_file",
+      "adls_file"
+    ],
+    "recommended_for": [
+      "small_files",
+      "medium_files",
+      "local_validation"
+    ],
+    "not_recommended_for": [
+      "large_lake_tables",
+      "distributed_queries"
+    ]
+  },
+  "spark": {
+    "supported_sources": [
+      "spark_file"
+    ],
+    "recommended_for": [
+      "large_files",
+      "s3_lake",
+      "adls_lake",
+      "delta",
+      "iceberg"
+    ],
+    "not_recommended_for": [
+      "simple_local_csv_demo"
+    ]
+  },
+  "sql": {
+    "supported_sources": [
+      "duckdb_csv",
+      "snowflake",
+      "trino",
+      "databricks_sql",
+      "clickhouse"
+    ],
+    "recommended_for": [
+      "warehouses",
+      "lakehouse_sql",
+      "production_table_validation"
+    ],
+    "not_recommended_for": [
+      "row_level_python_custom_checks"
+    ]
+  }
+}

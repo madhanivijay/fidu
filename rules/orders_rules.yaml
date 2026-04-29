@@ -1,0 +1,60 @@
+schema_version: 1
+
+dataset: orders
+
+source:
+  type: local_file
+  format: csv
+  path: ../data/orders.csv
+
+rules:
+  - name: required_order_columns_available
+    type: required_columns
+    columns: [order_id, customer_id, amount, status, order_date, email]
+    dimension: consistency
+    severity: critical
+  - name: schema_should_not_drift
+    type: schema_drift_check
+    expected_columns: [order_id, customer_id, amount, status, order_date, email]
+    allow_extra_columns: false
+    dimension: consistency
+    severity: warning
+  - name: order_id_not_null
+    type: not_null
+    column: order_id
+    dimension: completeness
+    severity: critical
+  - name: order_id_unique
+    type: unique
+    column: order_id
+    dimension: uniqueness
+    severity: critical
+  - name: customer_id_not_null
+    type: not_null
+    column: customer_id
+    dimension: completeness
+    severity: critical
+  - name: amount_between_valid_range
+    type: between
+    column: amount
+    min_value: 0
+    max_value: 100000
+    dimension: validity
+    severity: critical
+  - name: valid_order_status
+    type: accepted_values
+    column: status
+    values: [PLACED, SHIPPED, DELIVERED, CANCELLED]
+    dimension: validity
+    severity: warning
+  - name: email_format_valid
+    type: regex_match
+    column: email
+    pattern: "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
+    dimension: validity
+    severity: warning
+  - name: minimum_order_volume
+    type: row_count_min
+    value: 5
+    dimension: volume
+    severity: critical
