@@ -22,6 +22,8 @@ When bumping the output schema, also update
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-04-30
+
 ### Changed
 
 - Renamed PyPI package from `enterprise-dq-kit` to `fidu` and namespaced all modules under a single `fidu` package. This prevents collisions with Apache Airflow and other generic top-level names when installed via pip. Importable: `from fidu.core import ...`, `from fidu.drift.history_backend import ...`. CLI: `fidu --config <path>` (was `python main.py --config <path>`).
