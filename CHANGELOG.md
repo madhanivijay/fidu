@@ -22,6 +22,13 @@ When bumping the output schema, also update
 
 ## [Unreleased]
 
+## [0.1.2] - 2026-04-30
+
+### Added
+
+- ``fidu.__version__`` attribute, dynamically read from package metadata via ``importlib.metadata.version()``. Single source of truth - version always tracks ``pyproject.toml`` automatically. Falls back to ``"0.0.0+unknown"`` when running from a source checkout without an install.
+- Test for the new ``__version__`` attribute.
+
 ## [0.1.1] - 2026-04-30
 
 ### Changed
