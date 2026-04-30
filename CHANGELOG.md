@@ -22,6 +22,17 @@ When bumping the output schema, also update
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-04-30
+
+### Changed
+
+- Hardened TestPyPI smoke install in the publish workflow. Initial wait bumped to 60s, install retries up to 5 times with '--no-cache-dir', so the publish pipeline tolerates Fastly CDN propagation lag without needing manual job re-runs.
+- Removed '|| true' masking on 'fidu --help' in the smoke step so a broken entry point would actually fail the workflow.
+
+### Added
+
+- '[project.urls]' block in 'pyproject.toml' (Homepage, Repository, Issues, Changelog) so PyPI's "Project links" sidebar is no longer empty.
+
 ## [0.1.0] - 2026-04-30
 
 ### Changed

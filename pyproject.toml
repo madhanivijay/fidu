@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fidu"
-version = "0.1.0"
+version = "0.1.1"
 description = "Tool-agnostic data quality runner with native engines, Soda/GX/Deequ adapters, trust scores, and drift detection."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -41,6 +41,12 @@ dev = ["pytest>=8.0.0", "pytest-cov>=5.0.0", "ruff>=0.5.0", "pydantic>=2.6.0", "
 
 [project.scripts]
 fidu = "fidu.main:main"
+
+[project.urls]
+Homepage = "https://github.com/madhanivijay/fidu"
+Repository = "https://github.com/madhanivijay/fidu"
+Issues = "https://github.com/madhanivijay/fidu/issues"
+Changelog = "https://github.com/madhanivijay/fidu/blob/main/CHANGELOG.md"
 
 [tool.setuptools]
 include-package-data = true

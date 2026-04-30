@@ -120,21 +120,37 @@ jobs:
           python-version: "3.12"
 
       - name: Wait for TestPyPI index to update
-        run: sleep 30
+        # Initial wait for Fastly CDN edge propogation. The simple-index
+        # page can lag behind a successful upload by 30-60s on different
+        # edges. 60s gives a better baseline than the original 30s.
+        run: sleep 60
 
-      - name: Install from TestPyPI
+      - name: Install from TestPyPI (with retry)
+        # The simple-index page is cached at the Fastly edge the runner
+        # hits. We retry up to 5 times with 30s backoff and use
+        # --no-cache-dir to bypass any pip-side caching too.
         run: |
           python -m pip install --upgrade pip
-          # --extra-index-url so runtime deps (pandas, pyyaml, ...) still
-          # resolve from real PyPI; only the kit comes from TestPyPI.
-          pip install \
-            --index-url https://test.pypi.org/simple/ \
-            --extra-index-url https://pypi.org/simple/ \
-            "fidu==${{ needs.build.outputs.version }}"
+          for attempt in 1 2 3 4 5; do
+            echo "::group::Install attempt $attempt"
+            if pip install --no-cache-dir \
+                 --index-url https://test.pypi.org/simple/ \
+                 --extra-index-url https://pypi.org/simple/ \
+                 "fidu==${{ needs.build.outputs.version }}"; then
+              echo "::endgroup::"
+              echo "Install succeeded on attempt $attempt"
+              exit 0
+            fi 
+            echo "::endgroup::"
+            echo "Attempt $attempt failed; sleeping 30s before retry"
+            sleep 30 
+          done
+          echo "::error::Install failed after 5 attempts."
+          exit 1
 
       - name: Verify entry point + import
         run: |
-          fidu --help || true
+          fidu --help
           python -c "import fidu, fidu.core, fidu.connectors, fidu.engines, fidu.drift, fidu.translators, fidu.tool_adapters; print('import ok')"
 
   publish-pypi:
