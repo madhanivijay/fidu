@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "fidu"
-version = "0.1.0rc1"
+version = "0.1.0"
 description = "Tool-agnostic data quality runner with native engines, Soda/GX/Deequ adapters, trust scores, and drift detection."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "Apache-2.0"
-authors = [{name = "Enterprise DQ Kit Maintainers"}]
+authors = [{name = "fidu maintainers", email = "madhanivijay@gmail.com"}]
 keywords = ["data-quality", "soda", "great-expectations", "deequ", "airflow"]
 classifiers = [
     "Programming Language :: Python :: 3",
